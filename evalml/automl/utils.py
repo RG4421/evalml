@@ -99,8 +99,8 @@ def check_all_pipeline_names_unique(pipelines):
     Raises:
         ValueError if any pipeline names are duplicated.
     """
-    seen_names = set([])
-    duplicate_names = set([])
+    seen_names = set()
+    duplicate_names = set()
 
     for pipeline in pipelines:
         if pipeline.name in seen_names:
@@ -109,4 +109,5 @@ def check_all_pipeline_names_unique(pipelines):
             seen_names.add(pipeline.name)
 
     if duplicate_names:
-        raise ValueError(f"All pipeline names must be unique. The names {', '.join(duplicate_names)} were repeated.")
+        duplicates = "', '".join(duplicate_names)
+        raise ValueError(f"All pipeline names must be unique. The names {duplicates} were repeated.")
